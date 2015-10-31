@@ -8,27 +8,20 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+
+    int mCurrentFragmentIndex;
+    public final static int FRAGMENT_MENU = 0;
+    public final static int FRAGMENT_RECOMMEND = 1;
+    public final static int FRAGMENT_REPLY = 2;
+
     ViewPager mViewPager;
 
     @Override
@@ -72,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     }
 
 
+
+    // 옵션 설정 부분
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -94,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         return super.onOptionsItemSelected(item);
     }
 
+    // Tab 이벤트 핸들러
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // When the given tab is selected, switch to the corresponding page in
@@ -109,10 +105,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -121,75 +114,49 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return getFragment(position);
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
+        }
+
+        private Fragment getFragment(int idx) {
+            Fragment newFragment = null;
+
+            switch (idx) {
+                case FRAGMENT_MENU:
+                    newFragment = new MenuFragment();
+                    break;
+                case FRAGMENT_RECOMMEND:
+                    newFragment = new RecommendFragment();
+                    break;
+                case FRAGMENT_REPLY:
+                    newFragment = new ReplyFragment();
+                    break;
+
+                default:
+                    Log.d("getFragment", "no Fragment");
+                    break;
+            }
+
+            return newFragment;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0:
+                case FRAGMENT_MENU:
                     return getString(R.string.title_section1);
-                case 1:
+                case FRAGMENT_RECOMMEND:
                     return getString(R.string.title_section2);
-                case 2:
+                case FRAGMENT_REPLY:
                     return getString(R.string.title_section3);
             }
             return null;
         }
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        private static int fragmentPage = 1;
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            fragmentPage = sectionNumber;
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView=null;
-
-            if( fragmentPage == 1){
-                rootView = inflater.inflate(R.layout.fragment_menu, container, false);
-            }
-            else if( fragmentPage == 2){
-                rootView = inflater.inflate(R.layout.fragment_eating, container, false);
-            }
-            else if( fragmentPage == 3){
-                rootView = inflater.inflate(R.layout.fragment_reply, container, false);
-            }
-
-            return rootView;
-        }
-    }
-
 }
+
+
