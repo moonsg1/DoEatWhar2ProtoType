@@ -1,22 +1,18 @@
 package kms.prototype;
 
-import java.util.Locale;
-
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
@@ -138,14 +134,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         @Override
         public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
+                    return getString(R.string.title_section1);
                 case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
+                    return getString(R.string.title_section2);
                 case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
+                    return getString(R.string.title_section3);
             }
             return null;
         }
@@ -165,11 +160,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
          * Returns a new instance of this fragment for the given section
          * number.
          */
+        private static int fragmentPage = 1;
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+            fragmentPage = sectionNumber;
             return fragment;
         }
 
@@ -179,7 +176,18 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView=null;
+
+            if( fragmentPage == 1){
+                rootView = inflater.inflate(R.layout.fragment_menu, container, false);
+            }
+            else if( fragmentPage == 2){
+                rootView = inflater.inflate(R.layout.fragment_eating, container, false);
+            }
+            else if( fragmentPage == 3){
+                rootView = inflater.inflate(R.layout.fragment_reply, container, false);
+            }
+
             return rootView;
         }
     }
