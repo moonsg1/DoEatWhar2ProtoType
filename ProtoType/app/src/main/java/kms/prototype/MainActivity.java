@@ -12,17 +12,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import kms.prototype.Fragment.MenuFragment;
+import kms.prototype.Fragment.RecommendFragment;
+import kms.prototype.Fragment.ReplyFragment;
+
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
     SectionsPagerAdapter mSectionsPagerAdapter;
 
-
-    int mCurrentFragmentIndex;
     public final static int FRAGMENT_MENU = 0;
     public final static int FRAGMENT_RECOMMEND = 1;
     public final static int FRAGMENT_REPLY = 2;
 
-    ViewPager mViewPager;
+    UnSwipableViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (UnSwipableViewPager) findViewById(R.id.custom_pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // When swiping between different sections, select the corresponding
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             public void onPageSelected(int position) {
                 actionBar.setSelectedNavigationItem(position);
             }
+
         });
 
         // For each of the sections in the app, add a tab to the action bar.
@@ -69,19 +72,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     // 옵션 설정 부분
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -92,8 +90,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     // Tab 이벤트 핸들러
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in
-        // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
     }
 
@@ -124,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         private Fragment getFragment(int idx) {
             Fragment newFragment = null;
-
             switch (idx) {
                 case FRAGMENT_MENU:
                     newFragment = new MenuFragment();
@@ -135,12 +130,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 case FRAGMENT_REPLY:
                     newFragment = new ReplyFragment();
                     break;
-
                 default:
                     Log.d("getFragment", "no Fragment");
                     break;
             }
-
             return newFragment;
         }
 
