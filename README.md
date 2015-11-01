@@ -1,4 +1,4 @@
-# DoEatWhar2ProtoType
+# ProjectE_proto
 
 1. BasicForm - 결정된 UI를 토대로 프로토 타입 제작 
                 내부에 apk파일로 안드로이드 폰에서 설치해서 테스트 가능합니다.
