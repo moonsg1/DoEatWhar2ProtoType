@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+        // 서버에서 기본 정보를 받아 저장.
+        Network.getInstance().HttpPostData();
     }
 
 
