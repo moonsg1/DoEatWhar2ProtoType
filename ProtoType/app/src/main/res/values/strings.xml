@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">젠장, 오늘은 또 뭐먹지?</string>
-    <string name="title_section1">메뉴검색</string>
-    <string name="title_section2">이거머겅</string>
-    <string name="title_section3">댓글방</string>
+    // main activity
+    <string name="app_name">뭐먹을까?</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="title_section1">메뉴추천</string>
+    <string name="title_section2">타임라인</string>
+    <string name="title_section3">마이페이지</string>
 
     <string name="action_settings">설정</string>
+
+    //recommend fragment
+    <string name="recommend_mid">메뉴 한줄평</string>
 </resources>

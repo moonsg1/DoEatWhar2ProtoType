@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     SectionsPagerAdapter mSectionsPagerAdapter;
 
-    public final static int FRAGMENT_MENU = 0;
-    public final static int FRAGMENT_RECOMMEND = 1;
-    public final static int FRAGMENT_REPLY = 2;
+    public final static int FRAGMENT_RECOMMEND = 0;
+    public final static int FRAGMENT_TIMELINE = 1;
+    public final static int FRAGMENT_MYPAGE = 2;
 
     UnSwipableViewPager mViewPager;
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         }
 
         // 서버에서 기본 정보를 받아 저장.
-        Network.getInstance().HttpPostData();
+        //Network.getInstance().HttpPostData();
     }
 
 
@@ -124,13 +124,13 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         private Fragment getFragment(int idx) {
             Fragment newFragment = null;
             switch (idx) {
-                case FRAGMENT_MENU:
-                    newFragment = new MenuFragment();
-                    break;
                 case FRAGMENT_RECOMMEND:
                     newFragment = new RecommendFragment();
                     break;
-                case FRAGMENT_REPLY:
+                case FRAGMENT_TIMELINE:
+                    newFragment = new MenuFragment();
+                    break;
+                case FRAGMENT_MYPAGE:
                     newFragment = new ReplyFragment();
                     break;
                 default:
@@ -143,11 +143,11 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case FRAGMENT_MENU:
-                    return getString(R.string.title_section1);
                 case FRAGMENT_RECOMMEND:
+                    return getString(R.string.title_section1);
+                case FRAGMENT_TIMELINE:
                     return getString(R.string.title_section2);
-                case FRAGMENT_REPLY:
+                case FRAGMENT_MYPAGE:
                     return getString(R.string.title_section3);
             }
             return null;

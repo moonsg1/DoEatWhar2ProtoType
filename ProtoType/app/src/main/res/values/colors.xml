@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_material_dark">#1ABC9C</color>
-    <color name="topBar_bg">#1ABC9C</color>
+    <color name="topBar_bg">#d37153</color>
+    <color name="topBar_bg_dark">#cc5e3d</color>
+    <color name="button_bg">#d14217</color>
     <color name="actionBarItemBg">#ffffff</color>
 </resources>

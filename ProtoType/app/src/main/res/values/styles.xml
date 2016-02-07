@@ -1,15 +1,9 @@
 <resources>
-
-
     <!-- 앱 전체 테마 -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:actionBarStyle">@style/eatingActionBar</item>
+        <item name="colorPrimary">@color/topBar_bg</item>
+        <item name="colorPrimaryDark">@color/topBar_bg</item>
         <item name="android:actionBarItemBackground">@color/actionBarItemBg</item>
-    </style>
-
-    <!-- 액션바 스타일 -->
-    <style name="eatingActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">">
-        <item name="android:background">@color/topBar_bg</item>
     </style>
 
 
