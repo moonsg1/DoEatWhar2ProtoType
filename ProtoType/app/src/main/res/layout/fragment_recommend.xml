@@ -32,13 +32,15 @@
             tools:targetApi="jelly_bean_mr1" />
 
         <FrameLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="0.99">
+            android:layout_weight="1.0"
+            android:layout_gravity="center_horizontal">
 
+            <!--배경용-->
             <Gallery
-                android:layout_width="244dp"
-                android:layout_height="257dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:id="@+id/gallery"
                 android:background="@color/topBar_bg"
                 android:layout_gravity="center" />
@@ -47,8 +49,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView"
-                android:contentDescription=""
+                android:contentDescription="@string/recommend_desc"
                 />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/likeButton"
+                android:layout_gravity="right|bottom"
+                android:background="@drawable/smile" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/hateButton"
+                android:layout_gravity="left|bottom"
+                android:background="@drawable/dislike"
+                android:onClick="click_hateButton" />
+
         </FrameLayout>
 
         <TextView

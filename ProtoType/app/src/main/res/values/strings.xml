@@ -10,4 +10,5 @@
 
     //recommend fragment
     <string name="recommend_mid">메뉴 한줄평</string>
+    <string name="recommend_desc">추천 메뉴</string>
 </resources>

@@ -12,9 +12,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import kms.prototype.Fragment.MenuFragment;
+import kms.prototype.Fragment.TimeLineFragment;
 import kms.prototype.Fragment.RecommendFragment;
-import kms.prototype.Fragment.ReplyFragment;
+import kms.prototype.Fragment.MyPageFragment;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
@@ -128,10 +128,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                     newFragment = new RecommendFragment();
                     break;
                 case FRAGMENT_TIMELINE:
-                    newFragment = new MenuFragment();
+                    newFragment = new TimeLineFragment();
                     break;
                 case FRAGMENT_MYPAGE:
-                    newFragment = new ReplyFragment();
+                    newFragment = new MyPageFragment();
                     break;
                 default:
                     Log.d("getFragment", "no Fragment");
