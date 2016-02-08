@@ -9,79 +9,76 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".RecommendFragment">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"/>
-
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:weightSum="1">
+        android:id="@+id/scrollView"
+        android:layout_alignParentBottom="true">
 
-        <TextClock
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textClock"
-            android:textSize="30sp"
-            android:layout_gravity="center_horizontal"
-            tools:targetApi="jelly_bean_mr1" />
+            android:weightSum="1">
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1.0"
-            android:layout_gravity="center_horizontal">
-
-            <!--배경용-->
-            <Gallery
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:id="@+id/gallery"
-                android:background="@color/topBar_bg"
-                android:layout_gravity="center" />
-
-            <ImageView
+            <TextClock
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView"
-                android:contentDescription="@string/recommend_desc"
-                />
+                android:id="@+id/textClock"
+                android:textSize="30sp"
+                android:layout_gravity="center_horizontal"
+                tools:targetApi="jelly_bean_mr1" />
 
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/likeButton"
-                android:layout_gravity="right|bottom"
-                android:background="@drawable/smile" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:layout_gravity="center_horizontal"
+                android:background="#cccbcb">
 
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/hateButton"
-                android:layout_gravity="left|bottom"
-                android:background="@drawable/dislike"
-                android:onClick="click_hateButton" />
+                <!--배경용-->
 
-        </FrameLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recommendMenuImageView"
+                    android:contentDescription="@string/recommend_desc"
+                    android:layout_gravity="center" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/recommend_mid"
-            android:id="@+id/recommendResult" />
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/likeButton"
+                    android:layout_gravity="right|bottom"
+                    android:background="@drawable/smile"
+                    android:onClick="click_likeButton"/>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="214dp"
-            android:id="@+id/scrollView" >
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/hateButton"
+                    android:layout_gravity="left|bottom"
+                    android:background="@drawable/dislike"
+                    android:onClick="click_hateButton" />
 
-        </ScrollView>
-    </LinearLayout>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/recommend_mid"
+                android:id="@+id/recommendResult" />
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/replyListView"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

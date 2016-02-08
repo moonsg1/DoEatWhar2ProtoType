@@ -4,4 +4,5 @@
     <color name="topBar_bg_dark">#cc5e3d</color>
     <color name="button_bg">#d14217</color>
     <color name="actionBarItemBg">#ffffff</color>
+    <color name="image_bg">#868181</color>
 </resources>

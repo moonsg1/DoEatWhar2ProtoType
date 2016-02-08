@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public final static int FRAGMENT_TIMELINE = 1;
     public final static int FRAGMENT_MYPAGE = 2;
 
-    UnSwipableViewPager mViewPager;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (UnSwipableViewPager) findViewById(R.id.custom_pager);
+        mViewPager = (ViewPager) findViewById(R.id.custom_pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // When swiping between different sections, select the corresponding

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/uid_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/topBar_bg_dark"
+                android:text="userID"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/userInfo_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/image_bg"
+                android:text="Lv.120 신촌맛집왕"
+                android:textSize="20sp"
+                android:layout_marginLeft="5dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/reply_context"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceInverse"
+            android:textColor="#000000"
+            android:text="쌈사먹는 닭이란 것도 있다"
+            android:textSize="22sp"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <ImageButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:id="@+id/likeButton"
+                android:layout_below="@+id/btn_test"
+                android:layout_centerHorizontal="true"
+                android:background="@color/topBar_bg_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="좋아요 23"
+                android:id="@+id/like_num_text"
+                android:textColor="@color/topBar_bg"
+                android:layout_marginLeft="5dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/replyButton"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="3"
+                android:id="@+id/reply_num_text"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="방금 전"
+            android:id="@+id/reply_date_text"
+            android:textColor="#bbbbbb"
+            android:textIsSelectable="false"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageButton2"
+            android:layout_marginTop="10dp"
+            android:background="@color/image_bg" />
+
+    </LinearLayout>
+
+</LinearLayout>

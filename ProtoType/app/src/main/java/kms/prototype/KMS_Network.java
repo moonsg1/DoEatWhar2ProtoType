@@ -13,21 +13,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Network{
+public class KMS_Network {
     // 전역변수를 선언한다
     private String myId, myPWord, myTitle, mySubject, myResult;
 
     // singleton
-    private static Network instance;
+    private static KMS_Network instance;
 
-    private Network(){
+    private KMS_Network(){
     }
 
-    public static Network getInstance(){
+    public static KMS_Network getInstance(){
         if(instance == null){
-            synchronized (Network.class){
+            synchronized (KMS_Network.class){
                 if(instance == null){
-                    instance = new Network();
+                    instance = new KMS_Network();
                 }
             }
         }
@@ -91,6 +91,7 @@ public class Network{
     public String getJsonResult(){
         return myResult;
     }
+
 } // Activity
 
 
