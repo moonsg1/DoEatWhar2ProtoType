@@ -3,58 +3,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    tools:context=".MenuFragment"
-    android:background="@color/bg_white">
+    android:background="@color/bg_white"
+    tools:context=".MenuFragment">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/scrollView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" >
+        android:layout_marginLeft="@dimen/fragment_side_2"
+        android:layout_marginRight="@dimen/fragment_side_2"
+        android:scrollbars="none">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/timeLine_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/timeLine_list">
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/list_20"
                 android:layout_marginTop="@dimen/list_20"
-                android:layout_marginBottom="@dimen/list_20">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/popular_array"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
                     android:text="인기순"
                     android:textAppearance="?android:attr/textAppearanceInverse"
                     android:textColor="@color/text_gray_light"
-                    android:textSize="20sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/recent_array"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceInverse"
-                    android:textColor="@color/topBar_bg_dark"
-                    android:text="최신순"
-                    android:textSize="20sp"
                     android:layout_alignParentTop="true"
+                    android:layout_marginRight="@dimen/list_10"
                     android:layout_toLeftOf="@+id/popular_array"
                     android:layout_toStartOf="@+id/popular_array"
-                    android:layout_marginRight="@dimen/list_10" />
+                    android:text="최신순"
+                    android:textAppearance="?android:attr/textAppearanceInverse"
+                    android:textColor="@color/topBar_bg_dark"
+                    android:textSize="20sp" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/topBar_bg"
+        android:text="내 메뉴 올리기"
+        android:textColor="@color/bg_white"
+        android:textSize="18sp" />
 
 </RelativeLayout>
