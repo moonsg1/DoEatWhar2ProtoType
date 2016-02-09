@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    android:paddingTop="@dimen/list_20"
+    android:paddingBottom="@dimen/list_20"
+    android:background="@drawable/border"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        >
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/uid_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/topBar_bg_dark"
+                android:text="userID"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:id="@+id/userLv_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/text_gray_light"
+                android:text="Lv.120"
+                android:textSize="20sp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/uid_text"
+                android:layout_toEndOf="@+id/uid_text"
+                android:layout_marginLeft="@dimen/list_10" />
+
+            <TextView
+                android:id="@+id/userTitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/text_gray_light"
+                android:text="신촌맛집왕"
+                android:textSize="20sp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/userLv_text"
+                android:layout_toEndOf="@+id/userLv_text"
+                android:layout_marginLeft="@dimen/list_10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="방금 전"
+                android:id="@+id/date_text"
+                android:textColor="@color/text_gray"
+                android:textIsSelectable="false"
+                android:textSize="15sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="25dp"
+                android:layout_marginEnd="25dp" />
+
+        </RelativeLayout>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/foodPictureNode"
+            android:layout_marginTop="10dp"
+            android:background="@color/image_bg" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <ImageButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:id="@+id/imageButton"
+                android:background="@color/topBar_bg_dark"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/restaurantName_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/topBar_bg_dark"
+                android:text="청경관"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/list_10" />
+
+            <TextView
+                android:id="@+id/menuName_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/text_gray_light"
+                android:text="떡볶이오븐스파게티"
+                android:textSize="20sp"
+                android:layout_marginLeft="@dimen/list_10"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/text_gray_light"
+                android:text="3500원"
+                android:textSize="20sp"
+                android:layout_marginLeft="@dimen/list_10" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/comment_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceInverse"
+            android:textColor="#000000"
+            android:text="배고프다"
+            android:textSize="22sp"
+            android:layout_marginTop="10dp"
+            android:maxLines="5" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <ImageButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:id="@+id/likeButton"
+                android:background="@color/topBar_bg_dark"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="좋아요 23"
+                android:id="@+id/like_num_text"
+                android:textColor="@color/topBar_bg"
+                android:layout_marginLeft="5dp" />
+
+            <ImageButton
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:id="@+id/replyButton"
+                android:layout_marginLeft="15dp"
+                android:background="#b0b0b0"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="3"
+                android:id="@+id/reply_num_text"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

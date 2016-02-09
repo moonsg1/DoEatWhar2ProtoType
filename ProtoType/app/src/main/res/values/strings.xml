@@ -6,6 +6,7 @@
     <string name="title_section2">타임라인</string>
     <string name="title_section3">마이페이지</string>
 
+    <string name="action_share">공유하기</string>
     <string name="action_settings">설정</string>
 
     //recommend fragment

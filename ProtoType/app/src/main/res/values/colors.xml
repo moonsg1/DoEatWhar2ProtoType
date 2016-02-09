@@ -3,6 +3,13 @@
     <color name="topBar_bg">#d37153</color>
     <color name="topBar_bg_dark">#cc5e3d</color>
     <color name="button_bg">#d14217</color>
+
     <color name="actionBarItemBg">#ffffff</color>
     <color name="image_bg">#868181</color>
+
+    <color name="bg_white">#ffffff</color>
+    <color name="text_darkBrown">#5a2c0d</color>
+    <color name="text_gray">#868181</color>
+    <color name="text_gray_light">#bbbbbb</color>
+
 </resources>

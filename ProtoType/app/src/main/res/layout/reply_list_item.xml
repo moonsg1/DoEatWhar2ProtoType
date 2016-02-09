@@ -3,14 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:paddingTop="@dimen/list_20"
+    android:paddingBottom="@dimen/list_20"
+    android:background="@drawable/border"
+    >
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp">
+        android:gravity="start"
+        >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -24,33 +28,45 @@
                 android:textAppearance="?android:attr/textAppearanceInverse"
                 android:textColor="@color/topBar_bg_dark"
                 android:text="userID"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/userInfo_text"
+                android:id="@+id/userLv_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceInverse"
                 android:textColor="@color/image_bg"
-                android:text="Lv.120 신촌맛집왕"
+                android:text="Lv.120"
+                android:textSize="20sp"
+                android:layout_marginLeft="5dp" />
+
+            <TextView
+                android:id="@+id/userTitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceInverse"
+                android:textColor="@color/image_bg"
+                android:text="신촌맛집왕"
                 android:textSize="20sp"
                 android:layout_marginLeft="5dp" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/reply_context"
+            android:id="@+id/comment_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceInverse"
             android:textColor="#000000"
-            android:text="쌈사먹는 닭이란 것도 있다"
+            android:text="쌈사먹는 닭이란 것도 있다. 줄 자동 넘김은 어케 하는 걸까."
             android:textSize="22sp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:maxLines="5" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp">
 
@@ -58,9 +74,8 @@
                 android:layout_width="10dp"
                 android:layout_height="10dp"
                 android:id="@+id/likeButton"
-                android:layout_below="@+id/btn_test"
-                android:layout_centerHorizontal="true"
-                android:background="@color/topBar_bg_dark" />
+                android:background="@color/topBar_bg_dark"
+                android:layout_gravity="center_vertical" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,10 +87,12 @@
                 android:layout_marginLeft="5dp" />
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
                 android:id="@+id/replyButton"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:background="#b0b0b0"
+                android:layout_gravity="center_vertical" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,11 +107,10 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -109,7 +125,7 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/imageButton2"
+            android:id="@+id/profileNode"
             android:layout_marginTop="10dp"
             android:background="@color/image_bg" />
 

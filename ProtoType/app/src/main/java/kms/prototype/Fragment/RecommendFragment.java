@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
-import kms.prototype.KMS_Adapter;
-import kms.prototype.KMS_Network;
+import kms.prototype.Recommend_Adapter;
+import kms.prototype.Model.KMS_MenuComment;
 import kms.prototype.R;
 
 /**
@@ -24,8 +24,7 @@ public class RecommendFragment extends CommonFragment{
 
     private ImageView m_recommendImage;
     private ArrayList<Bitmap> m_bitmapContainer;
-    private ListView m_replyListView;
-    private KMS_Adapter m_adapter;
+    private Recommend_Adapter m_adapter;
     private int m_recommendIndex;
     private int m_maxIndex;
 
@@ -34,11 +33,12 @@ public class RecommendFragment extends CommonFragment{
                              Bundle savedInstanceState) {
 
         // 네트워크 연결부 클라도 자바인데 직렬화해서 개체를 보낼수 있지 않을까
-        String resultObj = KMS_Network.getInstance().getJsonResult();
+        //String resultObj = KMS_Network.getInstance().getJsonResult();
 
         m_recommendIndex = 0;
         m_maxIndex = 4;
-        m_bitmapContainer = new ArrayList<Bitmap>();
+        m_bitmapContainer = new ArrayList<>();
+        m_adapter = new Recommend_Adapter();
 
         View rootView = inflater.inflate(R.layout.fragment_recommend, container, false);
         HttpConnectAsyncTask asyncTask = new HttpConnectAsyncTask();
@@ -54,6 +54,7 @@ public class RecommendFragment extends CommonFragment{
         recommendMenuStr[4] = "http://cfile225.uf.daum.net/image/1908003550A20A371DAEC3";
 
         // image
+        m_recommendImage.setScaleType(ImageView.ScaleType.FIT_XY);
         m_recommendImage.setOnClickListener(click_image());
         asyncTask.execute(recommendMenuStr);
 
@@ -65,38 +66,41 @@ public class RecommendFragment extends CommonFragment{
         ImageButton likeButton = (ImageButton) rootView.findViewById(R.id.likeButton);
         likeButton.setOnClickListener(click_likeButton());
 
-        // 댓글 리스트
-        m_adapter = new KMS_Adapter();
-        m_replyListView = (ListView) rootView.findViewById(R.id.replyListView);
-        m_replyListView.setAdapter(m_adapter);
-        //m_replyListView.setOnItemClickListener(onClickListItem);
+        KMS_MenuComment comment2 = new KMS_MenuComment("동글",3,"신촌맛집왕","이래저래 맛있다.",23,13, null, null);
+        KMS_MenuComment comment1 = new KMS_MenuComment("검정고양이",13,"신촌맛집대왕","장문 테스트, 떡볶이 먹고 싶다. 떡볶이면 역시 떡튀순이지.",396,130,null,null);
+        m_adapter.add(comment2);
+        m_adapter.add(comment1);
+        m_adapter.add(comment2);
+        m_adapter.add(comment1);
+        m_adapter.add(comment2);
+        m_adapter.add(comment1);
+        m_adapter.add(comment2);
+        m_adapter.add(comment1);
 
+        // 댓글 리스트
         // ListView 에 아이템 추가
-        m_adapter.add("하스스톤");
-        m_adapter.add("몬스터 헌터");
-        m_adapter.add("디아블로");
-        m_adapter.add("와우");
-        m_adapter.add("리니지");
-        m_adapter.add("안드로이드");
-        m_adapter.add("아이폰");
+        LinearLayout commentContainer = (LinearLayout) rootView.findViewById(R.id.replyContainer);
+        for (int i=0; i<m_adapter.getCount(); i++) {
+            View commentView = m_adapter.getView(i,null,container);
+            commentContainer.addView(commentView);
+        }
 
         return rootView;
     }
 
     // image 클릭 리스너
     public View.OnClickListener click_image() {
-        View.OnClickListener resultListener = new View.OnClickListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("imageView", "IMAGE!");
             }
         };
-        return resultListener;
     }
 
     // hateButton 클릭 리스너
     public View.OnClickListener click_hateButton() {
-        View.OnClickListener resultListener = new View.OnClickListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("hate button", "HATE!");
@@ -107,12 +111,11 @@ public class RecommendFragment extends CommonFragment{
                 m_recommendImage.setImageBitmap(m_bitmapContainer.get(m_recommendIndex));
             }
         };
-        return resultListener;
     }
 
     // likeButton 클릭 리스너
     public View.OnClickListener click_likeButton() {
-        View.OnClickListener resultListener = new View.OnClickListener() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("hate button", "HATE!");
@@ -123,7 +126,6 @@ public class RecommendFragment extends CommonFragment{
                 m_recommendImage.setImageBitmap(m_bitmapContainer.get(m_recommendIndex));
             }
         };
-        return resultListener;
     }
 
     // 네트워크 통신 스레드용 AsyncTask 서브클래스
@@ -152,6 +154,7 @@ public class RecommendFragment extends CommonFragment{
             if(bitmap != null) {
                 Log.d("on post execute", "result = " + bitmap.getWidth());
             }
+
             m_recommendImage.setImageBitmap(m_bitmapContainer.get(m_recommendIndex));
         }
 
