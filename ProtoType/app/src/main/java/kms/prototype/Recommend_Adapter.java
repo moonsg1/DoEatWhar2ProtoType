@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
 
-import kms.prototype.Model.KMS_MenuComment;
+import kms.prototype.Model.DataBox;
 
 /**
  * Created by KMS on 2016-02-09. 2016
@@ -18,7 +18,7 @@ import kms.prototype.Model.KMS_MenuComment;
 public class Recommend_Adapter extends BaseAdapter {
 
     // 문자열을 보관 할 ArrayList
-    private ArrayList<KMS_MenuComment> m_List;
+    private ArrayList<DataBox> m_List;
 
     // 생성자
     public Recommend_Adapter() {
@@ -47,7 +47,7 @@ public class Recommend_Adapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final Context context = parent.getContext();
-        final KMS_MenuComment comment = m_List.get(position);
+        final DataBox comment = m_List.get(position);
 
         // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
         if ( convertView == null ) {
@@ -57,11 +57,11 @@ public class Recommend_Adapter extends BaseAdapter {
 
             // 유저 아이디
             TextView userId = (TextView) convertView.findViewById(R.id.uid_text);
-            userId.setText(comment.getName());
+            userId.setText(comment.getUserName());
 
             // 레벨
             TextView userLv = (TextView) convertView.findViewById(R.id.userLv_text);
-            String LV = "Lv." + comment.getLv().toString();
+            String LV = "Lv." + comment.getUserLv().toString();
             userLv.setText(LV);
 
             // 타이틀
@@ -85,7 +85,7 @@ public class Recommend_Adapter extends BaseAdapter {
     }
 
     // 외부에서 아이템 추가 요청 시 사용
-    public void add(KMS_MenuComment comment) {
+    public void add(DataBox comment) {
         m_List.add(comment);
     }
 

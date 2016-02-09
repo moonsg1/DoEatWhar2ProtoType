@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import kms.prototype.Recommend_Adapter;
-import kms.prototype.Model.KMS_MenuComment;
+import kms.prototype.Model.DataBox;
 import kms.prototype.R;
 
 /**
@@ -66,8 +66,8 @@ public class RecommendFragment extends CommonFragment{
         ImageButton likeButton = (ImageButton) rootView.findViewById(R.id.likeButton);
         likeButton.setOnClickListener(click_likeButton());
 
-        KMS_MenuComment comment2 = new KMS_MenuComment("동글",3,"신촌맛집왕","이래저래 맛있다.",23,13, null, null);
-        KMS_MenuComment comment1 = new KMS_MenuComment("검정고양이",13,"신촌맛집대왕","장문 테스트, 떡볶이 먹고 싶다. 떡볶이면 역시 떡튀순이지.",396,130,null,null);
+        DataBox comment2 = new DataBox(null,"청경관","떡볶이스파게티",3500,"동글",3,"신촌맛집왕","이래저래 맛있다.",23,13);
+        DataBox comment1 = new DataBox(null, "복성각","납작짜장",5500,"검정고양이",13,"신촌맛집대왕","장문 테스트, 떡볶이 먹고 싶다. 떡볶이면 역시 떡튀순이지.",396,130);
         m_adapter.add(comment2);
         m_adapter.add(comment1);
         m_adapter.add(comment2);
