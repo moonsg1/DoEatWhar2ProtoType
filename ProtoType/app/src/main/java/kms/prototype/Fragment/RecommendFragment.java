@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,52 +12,50 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
-
-import kms.prototype.Recommend_Adapter;
-import kms.prototype.Model.DataBox;
+import kms.prototype.KMS_Network;
+import kms.prototype.Model.CommentBox;
+import kms.prototype.Model.MenuBox;
 import kms.prototype.R;
+import kms.prototype.Recommend_Adapter;
 
 /**
  * Created by KMS on 2015-10-31. 2015
  */
 public class RecommendFragment extends CommonFragment{
 
-    private ImageView m_recommendImage;
-    private ArrayList<Bitmap> m_bitmapContainer;
+    private ImageView m_recommendImageView;
+    private LinearLayout m_commentLayout;
+
+    private Bitmap m_bitMap;
     private Recommend_Adapter m_adapter;
+    private SparseArray<MenuBox> m_menuBoxSparseArray = new SparseArray<>();
+
+    private ViewGroup m_container;
     private int m_recommendIndex;
     private int m_maxIndex;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        // 네트워크 연결부 클라도 자바인데 직렬화해서 개체를 보낼수 있지 않을까
-        //String resultObj = KMS_Network.getInstance().getJsonResult();
-
         m_recommendIndex = 0;
         m_maxIndex = 4;
-        m_bitmapContainer = new ArrayList<>();
+
         m_adapter = new Recommend_Adapter();
+        m_container = container;
 
         View rootView = inflater.inflate(R.layout.fragment_recommend, container, false);
-        HttpConnectAsyncTask asyncTask = new HttpConnectAsyncTask();
 
-        m_recommendImage = (ImageView) rootView.findViewById(R.id.recommendMenuImageView);
+        m_recommendImageView = (ImageView) rootView.findViewById(R.id.recommendMenuImageView);
 
-        // 무작위 추천 메뉴 객체
-        String[] recommendMenuStr = new String[5];
-        recommendMenuStr[0] = "http://cfile5.uf.tistory.com/image/127456594E2312BD335A09";
-        recommendMenuStr[1] = "http://cfile202.uf.daum.net/image/1171C9464DBF4D9135B703";
-        recommendMenuStr[2] = "http://cfile218.uf.daum.net/image/196EB1345032B3BC0C6662";
-        recommendMenuStr[3] = "http://cfile234.uf.daum.net/image/020E103A50F2B2D00FCDBC";
-        recommendMenuStr[4] = "http://cfile225.uf.daum.net/image/1908003550A20A371DAEC3";
+        // MenuContainer가 비어있다면 aSyncTask를 호출해서 가져온다.
+        if (m_menuBoxSparseArray.size() == 0) {
+            GetMenuAsyncTask menuGetterAsyncTask = new GetMenuAsyncTask();
+            menuGetterAsyncTask.execute();
+        }
 
         // image
-        m_recommendImage.setScaleType(ImageView.ScaleType.FIT_XY);
-        m_recommendImage.setOnClickListener(click_image());
-        asyncTask.execute(recommendMenuStr);
+        m_recommendImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        m_recommendImageView.setOnClickListener(click_image());
 
         // hateButton 리스너 연결
         ImageButton hateButton = (ImageButton) rootView.findViewById(R.id.hateButton);
@@ -66,24 +65,13 @@ public class RecommendFragment extends CommonFragment{
         ImageButton likeButton = (ImageButton) rootView.findViewById(R.id.likeButton);
         likeButton.setOnClickListener(click_likeButton());
 
-        DataBox comment2 = new DataBox(null,"청경관","떡볶이스파게티",3500,"동글",3,"신촌맛집왕","이래저래 맛있다.",23,13);
-        DataBox comment1 = new DataBox(null, "복성각","납작짜장",5500,"검정고양이",13,"신촌맛집대왕","장문 테스트, 떡볶이 먹고 싶다. 떡볶이면 역시 떡튀순이지.",396,130);
-        m_adapter.add(comment2);
-        m_adapter.add(comment1);
-        m_adapter.add(comment2);
-        m_adapter.add(comment1);
-        m_adapter.add(comment2);
-        m_adapter.add(comment1);
-        m_adapter.add(comment2);
-        m_adapter.add(comment1);
+        // mid 꺼내와서 aSynctask 호출 - 여기서 이미지 밖고 댓글 만듬
+        GetCommentAsyncTask getCommentAsyncTask = new GetCommentAsyncTask();
+        getCommentAsyncTask.execute();
 
         // 댓글 리스트
-        // ListView 에 아이템 추가
-        LinearLayout commentContainer = (LinearLayout) rootView.findViewById(R.id.replyContainer);
-        for (int i=0; i<m_adapter.getCount(); i++) {
-            View commentView = m_adapter.getView(i,null,container);
-            commentContainer.addView(commentView);
-        }
+        m_commentLayout = (LinearLayout) rootView.findViewById(R.id.replyContainer);
+
 
         return rootView;
     }
@@ -108,7 +96,6 @@ public class RecommendFragment extends CommonFragment{
                 if (m_recommendIndex > m_maxIndex){
                     m_recommendIndex = m_maxIndex;
                 }
-                m_recommendImage.setImageBitmap(m_bitmapContainer.get(m_recommendIndex));
             }
         };
     }
@@ -118,18 +105,17 @@ public class RecommendFragment extends CommonFragment{
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("hate button", "HATE!");
+                Log.d("like button", "LIKE!");
                 m_recommendIndex -= 1;
                 if (m_recommendIndex < 0){
                     m_recommendIndex = 0;
                 }
-                m_recommendImage.setImageBitmap(m_bitmapContainer.get(m_recommendIndex));
             }
         };
     }
 
-    // 네트워크 통신 스레드용 AsyncTask 서브클래스
-    public class HttpConnectAsyncTask extends AsyncTask<String, Integer, Bitmap> {
+    // 랜덤한 메뉴 가져오기
+    protected class GetMenuAsyncTask extends AsyncTask<String, Integer, SparseArray<MenuBox>> {
 
         @Override
         protected void onPreExecute() {
@@ -137,25 +123,60 @@ public class RecommendFragment extends CommonFragment{
         }
 
         @Override
-        protected Bitmap doInBackground(String... urlPath) {
-            Bitmap bitmap = null;
-            for(String path : urlPath){
-                bitmap = loadBitmap(path);
-                m_bitmapContainer.add(bitmap);
-                Log.d("do in back ground", "result = " + bitmap.getWidth());
-            }
-
-            return bitmap;
+        protected SparseArray<MenuBox> doInBackground(String... urlPath) {
+            SparseArray<MenuBox> sparseArray = KMS_Network.getInstance().getMenuResult();
+            m_menuBoxSparseArray = sparseArray;
+            return sparseArray;
         }
 
         @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
-            if(bitmap != null) {
-                Log.d("on post execute", "result = " + bitmap.getWidth());
+        protected void onPostExecute(SparseArray<MenuBox> sparseArray) {
+            super.onPostExecute(sparseArray);
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+    }
+
+    // 랜덤한 메뉴 가져오기
+    protected class GetCommentAsyncTask extends AsyncTask<Void, Integer, SparseArray<CommentBox>> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected SparseArray<CommentBox> doInBackground(Void... params) {
+            // 현재 인덱스에서의 메뉴박스에서 이미지 url을 가져와서 표시
+            MenuBox menuBox = m_menuBoxSparseArray.get(m_recommendIndex);
+            m_bitMap = loadBitmap(menuBox.getPictureUrl());
+
+            int mid = m_menuBoxSparseArray.get(m_recommendIndex).getMid();
+            SparseArray<CommentBox> sparseArray = KMS_Network.getInstance().getCommentResult(mid);
+            return sparseArray;
+        }
+
+        @Override
+        protected void onPostExecute(SparseArray<CommentBox> sparseArray) {
+            super.onPostExecute(sparseArray);
+
+            // setImage는 UI thread에서 해야해서 네트워크 통신 끝난후 실행
+            m_recommendImageView.setImageBitmap(m_bitMap);
+
+            // comment container에 commentBox 만들어서 넣음.
+            for (int i = 0; i < sparseArray.size(); i++) {
+                CommentBox commentBox = sparseArray.get(i);
+                m_adapter.add(commentBox);
             }
 
-            m_recommendImage.setImageBitmap(m_bitmapContainer.get(m_recommendIndex));
+            // 댓글 UI 생성
+            for (int i = 0; i < m_adapter.getCount(); i++) {
+                View commentView = m_adapter.getView(i, null, m_container);
+                m_commentLayout.addView(commentView);
+            }
         }
 
         @Override

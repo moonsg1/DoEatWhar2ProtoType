@@ -27,10 +27,10 @@ public class TimeLineFragment extends Fragment{
 
         m_adapter = new TimeLine_Adapter();
 
-        View rootView = inflater.inflate(R.layout.fragment_timeLine, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_timeline, container, false);
 
-        DataBox comment1 = new DataBox(null, "복성각","납작짜장",5500,"검정고양이",13,"신촌맛집대왕","장문 테스트, 떡볶이 먹고 싶다. 떡볶이면 역시 떡튀순이지.",396,130);
-        DataBox comment2 = new DataBox(null,"청경관","떡볶이스파게티",3500,"동글",3,"신촌맛집왕","이래저래 맛있다.",23,13);
+        DataBox comment2 = new DataBox(null, "청경관", "떡볶이스파게티", 3500, "동글", 3, "신촌맛집왕", "이래저래 맛있다.", "3.3", 23, 13);
+        DataBox comment1 = new DataBox(null, "복성각", "납작짜장", 5500, "검정고양이", 13, "신촌맛집대왕", "장문 테스트, 떡볶이 먹고 싶다. 떡볶이면 역시 떡튀순이지.", "3.4", 396, 130);
         m_adapter.add(comment1);
         m_adapter.add(comment2);
         m_adapter.add(comment1);

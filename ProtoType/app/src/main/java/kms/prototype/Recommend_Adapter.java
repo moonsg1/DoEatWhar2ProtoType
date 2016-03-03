@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import kms.prototype.Model.DataBox;
+import kms.prototype.Model.CommentBox;
 
 /**
  * Created by KMS on 2016-02-09. 2016
@@ -18,7 +18,7 @@ import kms.prototype.Model.DataBox;
 public class Recommend_Adapter extends BaseAdapter {
 
     // 문자열을 보관 할 ArrayList
-    private ArrayList<DataBox> m_List;
+    private ArrayList<CommentBox> m_List;
 
     // 생성자
     public Recommend_Adapter() {
@@ -47,7 +47,7 @@ public class Recommend_Adapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final Context context = parent.getContext();
-        final DataBox comment = m_List.get(position);
+        final CommentBox comment = m_List.get(position);
 
         // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
         if ( convertView == null ) {
@@ -85,7 +85,7 @@ public class Recommend_Adapter extends BaseAdapter {
     }
 
     // 외부에서 아이템 추가 요청 시 사용
-    public void add(DataBox comment) {
+    public void add(CommentBox comment) {
         m_List.add(comment);
     }
 
