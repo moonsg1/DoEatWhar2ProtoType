@@ -1,4 +1,4 @@
-package kms.prototype;
+package kms.prototype.Adpater;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import kms.prototype.Model.CommentBox;
+import kms.prototype.R;
 
 /**
  * Created by KMS on 2016-02-09. 2016

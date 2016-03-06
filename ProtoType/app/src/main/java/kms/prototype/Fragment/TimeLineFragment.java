@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import kms.prototype.Model.DataBox;
 import kms.prototype.R;
-import kms.prototype.TimeLine_Adapter;
+import kms.prototype.Adpater.TimeLine_Adapter;
 
 /**
  * Created by KMS on 2015-10-31. 2015

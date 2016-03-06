@@ -16,7 +16,7 @@ import kms.prototype.KMS_Network;
 import kms.prototype.Model.CommentBox;
 import kms.prototype.Model.MenuBox;
 import kms.prototype.R;
-import kms.prototype.Recommend_Adapter;
+import kms.prototype.Adpater.Recommend_Adapter;
 
 /**
  * Created by KMS on 2015-10-31. 2015
